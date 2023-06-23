@@ -1,4 +1,4 @@
-version = 2.0
+version = latest
 namespace = exchange-staging
 hostname = ap-staging-app.312centos.com
 replicas = 2 
