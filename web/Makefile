@@ -1,7 +1,7 @@
 .PHONY: all_targets
 all: build login push deploy
 region = us-east-1
-version = 0.1
+version = latest
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
 repo = exchange-app-web
 stage = prod

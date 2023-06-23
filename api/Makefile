@@ -1,7 +1,7 @@
 .PHONY: all_targets
 all: build login push switch-cluster deploy
 region = us-east-1
-version = 2.0
+version = latest
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
 repo = exchange-app-api
 appname = api
