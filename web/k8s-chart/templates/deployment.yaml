@@ -23,8 +23,7 @@ spec:
         env:
         - name: PORT
           value: "{{ .Values.port }}"
-        - name: API_HOST
-          value: "{{ .Values.API_HOST_VAR }}"
+
 
 
        
