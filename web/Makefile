@@ -25,7 +25,7 @@ deploy:
 		--set image.tag=$(version) \
 		--set port=3000 \
 		--set hostname_var=$(hostname) \
-		--set API_HOST_VAR="http://api-svc:3000" \
+
 
 	  
 
