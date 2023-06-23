@@ -9,7 +9,7 @@ RUN npm update -g
 COPY ./ ./
 
 ENV PORT=80
-ENV API_HOST=http://ap-dev-app.312centos.com:3000/api
+ENV API_HOST=https://ap-dev-app.312centos.com/api:3000
 EXPOSE 80
 
 CMD npm start
