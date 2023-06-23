@@ -14,7 +14,7 @@ COPY ./ ./
 
 # Set environment variables
 ENV PORT=3000
-ENV DB_VAR=postgres://postgres:12345678@database-test.cy32g4owxpjc.us-east-1.rds.amazonaws.com:5432/database
+ENV DB_VAR=postgres://postgres:12345678@database-test.cy32g4owxpjc.us-east-1.rds.amazonaws.com:5432/postgres
 
 # Expose the port
 EXPOSE 3000
