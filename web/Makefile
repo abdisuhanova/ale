@@ -23,7 +23,7 @@ deploy:
 		--set replicaCount=$(replicas) \
 		--set image.repo=$(account).dkr.ecr.$(region).amazonaws.com/$(repo) \
 		--set image.tag=$(version) \
-		--set port=3000 \
+		--set port=80 \
 		--set hostname_var=$(hostname) \
 
 
