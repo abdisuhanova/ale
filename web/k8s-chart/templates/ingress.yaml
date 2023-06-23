@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Values.applicationName }}-ingress"
   namespace: {{ .Values.namespace }}
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 
 spec:
   ingressClassName: nginx
@@ -26,6 +26,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: "web-svc"
+            name: "api-svc"
             port:
               number: 3000
