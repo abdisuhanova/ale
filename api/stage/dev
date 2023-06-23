@@ -1,0 +1,4 @@
+
+namespace = dev
+replicas = 1
+hostname = ap-dev-app.312centos.com

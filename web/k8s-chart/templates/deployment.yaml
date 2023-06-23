@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.applicationName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.applicationName }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.applicationName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.applicationName }}
+    spec:
+      containers:
+      - name: {{ .Values.applicationName }}
+        image: {{ .Values.image.repo }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        env: 
+        - name: PORT
+          value: "{{ .Values.port }}"
+        - name: API_HOST
+          value: "http://api-svc"
+       

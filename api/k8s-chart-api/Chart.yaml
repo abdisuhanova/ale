@@ -1,0 +1,5 @@
+apiVersion: v2
+name: app-deployment-chart
+description: Helm Chart for deploying stateless application into K8s cluster
+version: 0.1.0
+type: application

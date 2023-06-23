@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::036692858685:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/FECE0AE6164837F564DC8C2CEB80B746"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "oidc.eks.us-east-1.amazonaws.com/id/FECE0AE6164837F564DC8C2CEB80B746:aud": "sts.amazonaws.com",
+          "oidc.eks.us-east-1.amazonaws.com/id/FECE0AE6164837F564DC8C2CEB80B746:sub": "system:serviceaccount:kube-system:nginx-deployment-sa"
+        }
+      }
+    }
+  ]
+}

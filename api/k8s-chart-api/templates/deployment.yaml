@@ -1,0 +1,58 @@
+apiVersion: secrets-store.csi.x-k8s.io/v1alpha1
+kind: SecretProviderClass
+metadata:
+  name: nginx-deployment-aws-secrets
+  namespace: {{ .Values.namespace }}
+spec:
+  provider: aws
+  parameters:
+    objects: |
+        - objectName: {{ .Values.secretname }}
+          objectType: "secretsmanager"
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    eks.amazonaws.com/role-arn:  arn:aws:iam::036692858685:role/secret-access-role
+  name: nginx-deployment-sa1
+  namespace: {{ .Values.namespace }}
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.applicationName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.applicationName }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.applicationName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.applicationName }}
+    spec:
+      serviceAccountName: nginx-deployment-sa1
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "nginx-deployment-aws-secrets"
+      containers:
+      - name: {{ .Values.applicationName }}
+        image: {{ .Values.image.repo }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+  
+              
